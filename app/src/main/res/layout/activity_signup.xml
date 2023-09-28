@@ -60,7 +60,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/signupemail"
             android:hint="Enter Your Email"
-            android:inputType="textEmailAddress">
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            >
 
         </EditText>
     </com.google.android.material.textfield.TextInputLayout>
@@ -81,6 +83,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/signuppassword"
             android:hint="Enter Your Password"
+            android:textColor="@color/white"
             >
 
         </EditText>

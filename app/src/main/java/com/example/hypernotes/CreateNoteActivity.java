@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,6 +31,8 @@ public class CreateNoteActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
 
+    ProgressBar mProgressBarOfCreateNote;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,8 @@ public class CreateNoteActivity extends AppCompatActivity {
         mSaveNote=findViewById(R.id.saveNoteFAB);
         mCreateContentOfNote=findViewById(R.id.createContentOfNote);
         mCreateTitleOfNote=findViewById(R.id.createTitleOfNote);
+
+        mProgressBarOfCreateNote=findViewById(R.id.progressBarOfCreateNote);
 
         Toolbar toolbar = findViewById(R.id.createNoteToolbar);
         setSupportActionBar(toolbar);
@@ -60,6 +65,10 @@ public class CreateNoteActivity extends AppCompatActivity {
                 else{
 
 
+
+                    mProgressBarOfCreateNote.setVisibility(View.VISIBLE);
+
+
                     DocumentReference documentReference=firebaseFirestore.
                             collection("notes").document(firebaseUser.getUid()).
                             collection("myNotes").document();
@@ -73,6 +82,7 @@ public class CreateNoteActivity extends AppCompatActivity {
                         public void onSuccess(Void unused) {
                             Toast.makeText(getApplicationContext(),
                                     "Note Created Successfully",Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent
                                     (CreateNoteActivity.this,NotesActivity.class));
                         }
@@ -81,6 +91,8 @@ public class CreateNoteActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(getApplicationContext(),
                                     "Failed To Create Note",Toast.LENGTH_SHORT).show();
+
+                            mProgressBarOfCreateNote.setVisibility(View.INVISIBLE);
                             //startActivity(new Intent
                             //        (CreateNoteActivity.this,NotesActivity.class));
                         }

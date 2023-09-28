@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
 
+    ProgressBar mProgressBarOfMainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         mLogIn=findViewById(R.id.login);
         mGoToForgotPassword=findViewById(R.id.gotoforgotpassword);
         mGoToSignUp=findViewById(R.id.gotosingup);
+
+        mProgressBarOfMainActivity=findViewById(R.id.progressBarOfMainActivity);
+
 
         firebaseAuth=FirebaseAuth.getInstance();
         FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
@@ -80,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     // Login the user
 
+
+                    mProgressBarOfMainActivity.setVisibility(View.VISIBLE);
+
                     firebaseAuth.signInWithEmailAndPassword(mail,password).
                             addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -92,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),
                                                 "Account Doesn't Exist", Toast.LENGTH_SHORT)
                                                 .show();
+                                        mProgressBarOfMainActivity.setVisibility(View.INVISIBLE);
                                     }
 
 
@@ -121,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this,NotesActivity.class));
         }
         else{
+            mProgressBarOfMainActivity.setVisibility(View.INVISIBLE);
             Toast.makeText(getApplicationContext(),
                             "Verify your mail first", Toast.LENGTH_SHORT)
                     .show();
