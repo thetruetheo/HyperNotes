@@ -9,4 +9,7 @@
     <color name="note_color_3">#3498db</color>
     <color name="note_color_4">#8e44ad</color>
     <color name="note_color_5">#e74c3c</color>
+
+    <color name="note_editText_background">#00838F</color>
+    <color name="transparent">#00000000</color>
 </resources>

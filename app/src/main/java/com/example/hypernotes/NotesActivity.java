@@ -61,7 +61,6 @@ public class NotesActivity extends AppCompatActivity {
 
 
 
-
         mCreateNotesFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

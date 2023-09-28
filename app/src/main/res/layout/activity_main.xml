@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/notes_backgound"
     tools:context=".MainActivity">
 
 
@@ -70,6 +70,8 @@
             android:hint="Enter Your Email"
             android:inputType="textEmailAddress"
             android:textColor="@color/white"
+
+            android:background="@color/note_editText_background"
             >
 
         </EditText>
@@ -92,6 +94,7 @@
             android:id="@+id/login_password"
             android:hint="Enter Your Password"
             android:textColor="@color/white"
+            android:background="@color/note_editText_background"
             >
 
         </EditText>
